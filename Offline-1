@@ -1,0 +1,150 @@
+#include<iostream>
+#include<cmath>
+using namespace std;
+class Point
+{
+    int x,y;
+public:
+    Point();
+    Point(int p,int q);
+    Set_x(int a);
+    Set_y(int b);
+    int Get_x();
+    int Get_y();
+    void print()
+    {
+        cout<<"Coordinates:  "<< x << " , " <<y<<endl;
+    }
+};
+Point::Point()
+{
+    x=0;
+    y=0;
+}
+Point::Point(int p,int q)
+{
+    x=p;
+    y=q;
+}
+
+Point::Set_x(int a)
+{
+    x=a;
+}
+Point::Set_y(int b)
+{
+    y=b;
+}
+int Point::Get_x()
+{
+    return x;
+}
+int Point::Get_y()
+{
+    return y;
+}
+class Circle
+{
+    Point p;
+    int radius;
+public:
+    Circle()
+    {
+
+    }
+    Circle(int cx,int cy,int rad)
+    {
+        p.Set_x(cx);
+        p.Set_y(cy);
+        radius=rad;
+    }
+    Circle(int cx,int cy)
+    {
+        p.Set_x(cx);
+        p.Set_y(cy);
+    }
+    Circle(int rad)
+    {
+        radius=rad;
+    }
+    update(int a,int b,int r)
+    {
+        int cx2,cy2;
+        cx2=p.Get_x();
+        cy2=p.Get_y();
+        p.Set_x(cx2+a);
+        p.Set_y(cy2+b);
+        radius+=r;
+    }
+    update(int r)
+    {
+        radius+=r;
+    }
+    update(int a,int b)
+    {
+        int cx2,cy2;
+        cx2=p.Get_x();
+        cy2=p.Get_y();
+        p.Set_x(cx2+a);
+        p.Set_y(cy2+b);
+    }
+    void print()
+    {
+        cout<<"Center :";
+        p.print();
+        cout<< "Radius : " <<radius <<endl;
+    }
+};
+class Line
+{
+    Point p1,p2;
+public:
+    Line()
+    {
+
+    }
+    Line(int a1,int b1,int a2,int b2)
+    {
+        p1.Set_x(a1);
+        p1.Set_y(b1);
+        p2.Set_x(a2);
+        p2.Set_y(b2);
+    }
+    Length()
+    {
+        double len;
+        len=(((p1.Get_x()-p2.Get_x())*(p1.Get_x()-p2.Get_x()))+((p1.Get_y()-p2.Get_y())*(p1.Get_y()-p2.Get_y())));
+        cout<< "Length: " << sqrt(len)<<endl;
+    }
+};
+int main()
+{
+    Point p(5,5);
+    Circle c(2, 3, 5);
+    cout << endl << "Point Display" <<endl;
+    p.print();
+    cout << endl << "Circle Display" <<endl;
+    c.print();
+    cout << endl;
+//First update
+    cout << "First Update" << endl;
+// call “update” function of Circle class to increase the center’s x coordinate by 5 and y coordinate by 5;
+    c.update(5,5);
+    c.print();
+    cout <<endl;
+//Second update
+    cout << "Second Update" << endl;
+// call “update” function of Circle class to increase the radius by 6;
+    c.update(6);
+    c.print();
+    cout << endl;
+//Third update
+    cout << "Third Update" << endl;
+// call “update” function of Circle class to increase the center’s x coordinate by 2 and y coordinate by 2 and the radius by 2;
+    c.update(2,2,2);
+    c.print();
+    cout << endl << "Line Display" <<endl;
+    Line l1(0,4,0,10);
+    l1.Length();
+    return 0;
+}
