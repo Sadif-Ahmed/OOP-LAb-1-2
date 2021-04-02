@@ -1,0 +1,126 @@
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+class Vectors
+{
+    int *p;
+    int s;
+public:
+    Vectors(int x);
+    ~Vectors();
+    print();
+    set(int index,int x,int y,int z);
+    int* get(int index);
+    add(int x,int y,int z);
+    int* add();
+};
+Vectors::Vectors(int x)
+{
+    s=x*4;
+    p=(int *)malloc(s*sizeof(int));
+    int *ptr;
+    ptr=p;
+    for(int i=0;i<100;i++)
+    {
+        *ptr=0;
+        ptr+=4;
+    }
+    ptr-=400;
+    for(int i=1;i<=x;i++)
+    {
+        *ptr=i;
+        ptr+=4;
+    }
+}
+Vectors::~Vectors()
+{
+    free(p);
+}
+Vectors::print()
+{   int *ptr=p;
+    while(*ptr)
+    {
+        cout<<*(ptr+1)<<" "<<*(ptr+2)<<" "<<*(ptr+3)<<endl;
+        ptr+=4;
+    }
+}
+Vectors::set(int index,int x,int y,int z)
+{
+    int *ptr=p;
+   for(int i=1;i<index;i++)
+    {
+        ptr+=4;
+    }
+    *(ptr+1)=x;
+    *(ptr+2)=y;
+    *(ptr+3)=z;
+}
+int * Vectors::get(int index)
+{
+    int *ptr;
+        ptr=p;
+   int *ret;
+    ret=(int *)malloc(3*sizeof(int));
+     for(int i=1;i<index;i++)
+    {
+        ptr+=4;
+    }
+    *ret=*(ptr+1);
+    *(ret+1)=*(ptr+2);
+    *(ret+2)=*(ptr+3);
+    return ret;
+}
+Vectors::add(int x,int y,int z)
+{
+    int*ptr=p;
+    while(*ptr)
+    {
+        *(ptr+1)+=x;
+        *(ptr+2)+=y;
+        *(ptr+3)+=z;
+         ptr+=4;
+    }
+}
+int * Vectors::add()
+{
+    int *ptr,x,y,z;
+    ptr=p;
+    x=0;y=0;z=0;
+    while(*ptr)
+    {
+       x+=*(ptr+1);
+       y+=*(ptr+2);
+       z+=*(ptr+3);
+       ptr+=4;
+    }
+     int *ret;
+    ret=(int *)malloc(3*sizeof(int));
+    *ret=x;
+    *(ret+1)=y;
+    *(ret+2)=z;
+    return ret;
+}
+int main()
+{
+
+ cout<<"Hello World"<<'\n';
+ Vectors m(3);
+ for(int i=1; i<=3; i++)
+ for(int j=1; j<=3; j++)
+ m.set(i,i+j,i-j,i*j);
+
+ m.print();
+ int* array = m.get(1);//index
+ cout<<array[0]<<' '<<array[1]<<' '<<array[2]<<'\n';
+ m.set(1,100,100,100);//index
+ array = m.get(1);//index
+ cout<<array[0]<<' '<<array[1]<<' '<<array[2]<<'\n';
+ m.add(100,100,100);
+ m.print();
+
+ array = m.add();
+ cout<<array[0]<<' '<<array[1]<<' '<<array[2]<<'\n';
+
+ return 0;
+
+}
