@@ -1,0 +1,192 @@
+#include<iostream>
+#include<cstring>
+#include<cmath>
+using namespace std;
+
+class Vector
+{
+    char *name;
+    int x,y,z;
+public:
+    Vector(char *n)
+    {
+        int l = strlen(n);
+        name = new char[l+1];
+        strcpy(name,n);
+        x=0;
+        y=0;
+        z=0;
+    }
+    Vector(char *n, int a, int b, int c)
+    {
+        int l = strlen(n);
+        name = new char[l+1];
+        strcpy(name,n);
+        x=a;
+        y=b;
+        z=c;
+    }
+    int setX(int a)
+    {
+        x=a;
+    }
+    int setY(int b)
+    {
+        y=b;
+    }
+    int setZ(int c)
+    {
+        z=c;
+    }
+
+    void setName(char *n)
+    {
+        int l = strlen(n);
+        name = new char[l+1];
+        strcpy(name,n);
+    }
+
+    int getX()
+    {
+        return x;
+    }
+    int getY()
+    {
+        return y;
+    }
+    int getZ()
+    {
+        return z;
+    }
+
+    char *getName()
+    {
+        return name;
+    }
+
+    ~Vector()
+    {
+        delete []name;
+    }
+    void print()
+    {
+        cout<<this->name<<":"<<"    ";
+        if(x<0)
+        {
+            cout<<"-"<<abs(x)<<"x";
+        }
+        else
+        {
+            cout<<abs(x)<<"x";
+        }
+        if(y<0)
+        {
+            cout<<"-"<<abs(y)<<"y";
+        }
+        else
+        {
+            cout<<"+"<<abs(y)<<"y";
+        }
+        if(z<0)
+        {
+            cout<<"-"<<abs(z)<<"z";
+        }
+        else
+        {
+            cout<<"+"<<abs(z)<<"z";
+        }
+        cout<<endl;
+    }
+    Vector &operator =(const Vector &a)
+    {
+        if(strlen(name)<strlen(a.name))
+        {
+            delete []name;
+            name=new char[strlen(a.name)];
+        }
+        strcpy(name,a.name);
+        x=a.x;
+        y=a.y;
+        z=a.z;
+        return *this;
+    };
+    Vector operator ^(Vector &b)
+    {
+        Vector res("Result1");
+        res.x=y*b.z-z*b.y;
+        res.y=z*b.x-x*b.z;
+        res.z=x*b.y-y*b.x;
+        return res;
+    }
+    int operator ==(Vector &a)
+    {
+
+        if((x==a.x)&&(y==a.y)&&(z==a.z))
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+    friend Vector operator*(int i,Vector &A);
+    friend Vector operator*(Vector &A,int i);
+    friend Vector operator*(Vector &A,Vector &B);
+
+};
+Vector operator*(int i,Vector &A)
+{
+    Vector res(A.name);
+    res.x=A.x*i;
+    res.y=A.y*i;
+    res.z=A.z*i;
+    return res;
+};
+Vector operator*(Vector &A,int i)
+{
+    Vector res(A.name);
+    res.x=A.x*i;
+    res.y=A.y*i;
+    res.z=A.z*i;
+    return res;
+};
+Vector operator*(Vector &A,Vector &B)
+{
+    Vector res("Result1");
+    res.x=A.x*B.x;
+    res.y=A.y*B.y;
+    res.z=A.z*B.z;
+    return res;
+};
+int main()
+{
+    Vector v1("v1", 1,2,3), v2("v2", 4, 5, -6), v3("Result1"),v4("Result2",-27,18,-3);
+
+    v1.print();     ///Print the components of vector v1
+    v2.print();     ///Print the components of vector v2
+    v3=v1^v2;
+    ///Calculate the cross product of vector v1 and vector v2 (Consider ^ as cross product for this assignment)
+    v3.print();     ///Print the modified components of vector v3 (Name: Result1)
+
+    if(v3==v4)      ///Check for equality; if two vectors contain equal component values (x, y, z), then they are equal.
+        cout<<"Vectors are equal"<<endl;
+    else
+        cout<<"Vectors are not equal"<<endl;
+
+    v1= v1*2;       ///Multiply each component of vector v1 with the given value
+    v1.print();     ///Print the modified components of vector v1
+
+    v2=2*v2;        ///Multiply each component of vector v2 with the given value
+    v2.print();     ///Print the modified components of vector v2
+
+    v3=v1*v2;       ///Multiply each component of vector v1 with the corresponding component of vector v2.
+    v3.print();     ///Print the modified components of vector v3 (Name: Result1)
+
+    if(v3==v4)      ///Check for equality; if two vectors contain equal component values (x, y, z), then they are equal.
+        cout<<"Vectors are equal"<<endl;
+    else
+        cout<<"Vectors are not equal"<<endl;
+
+    return 0;
+}
