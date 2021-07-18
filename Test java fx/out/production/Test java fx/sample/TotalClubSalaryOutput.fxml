@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #252525;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.TotalClubSalaryOutput">
+   <children>
+      <AnchorPane layoutX="104.0" layoutY="67.0" prefHeight="200.0" prefWidth="406.0">
+         <children>
+            <Label layoutX="41.0" layoutY="45.0" text="The Total Yearly Salary of the desired Club: " textFill="#f80707">
+               <font>
+                  <Font size="17.0" />
+               </font></Label>
+            <Label fx:id="TotalSalary" layoutX="142.0" layoutY="100.0" text="Label" textFill="#ebe9e9">
+               <font>
+                  <Font size="26.0" />
+               </font></Label>
+            <Label layoutX="236.0" layoutY="103.0" text="\$" textFill="#fffdfd">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Button fx:id="Back" layoutX="452.0" layoutY="297.0" mnemonicParsing="false" onAction="#Back" text="Back" />
+   </children>
+</AnchorPane>

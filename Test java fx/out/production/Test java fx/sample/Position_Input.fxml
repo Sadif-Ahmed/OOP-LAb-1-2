@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #252525;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.PositionInput">
+   <children>
+      <AnchorPane layoutX="157.0" layoutY="59.0" prefHeight="276.0" prefWidth="298.0">
+         <children>
+            <Label layoutX="55.0" layoutY="59.0" text="Enter Your Desired Position:" textFill="#e13c09" />
+            <TextField fx:id="Position" layoutX="62.0" layoutY="113.0" />
+            <Button fx:id="Submit" layoutX="36.0" layoutY="216.0" mnemonicParsing="false" onAction="#Submit" text="Submit" />
+            <Button fx:id="Reset" layoutX="123.0" layoutY="216.0" mnemonicParsing="false" onAction="#Reset" text="Reset" />
+            <Button fx:id="Back" layoutX="211.0" layoutY="216.0" mnemonicParsing="false" onAction="#Back" text="Back" />
+            <Label layoutX="14.0" layoutY="-7.0" text="Player Position Input" textFill="#726f6f">
+               <font>
+                  <Font size="29.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
